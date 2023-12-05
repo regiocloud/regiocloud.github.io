@@ -51,6 +51,18 @@ const config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tutorials',
+        path: 'tutorials',
+        routeBasePath: 'tutorials',
+        sidebarPath: require.resolve('./sidebarTutorials.js')
+      }
+    ],
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -69,6 +81,7 @@ const config = {
             position: 'left',
             label: 'Dokumentation',
           },
+          { to: "/tutorials", label: "Tutorials", position: "left" },
           { to: "/blog", label: "Blog", position: "left" },
           {
             href: 'https://scs.community',
