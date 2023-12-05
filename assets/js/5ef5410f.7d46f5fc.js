@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkosism=self.webpackChunkosism||[]).push([[6731],{8589:e=>{e.exports=JSON.parse('[{"label":"Debian","permalink":"/tutorials/tags/debian","count":1},{"label":"Prometheus","permalink":"/tutorials/tags/prometheus","count":1}]')}}]);
