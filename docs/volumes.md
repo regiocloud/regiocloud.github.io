@@ -1,6 +1,6 @@
 ---
-sidebar_label: Object Store
-sidebar_position: 55
+sidebar_label: Volumes
+sidebar_position: 50
 ---
 
-# Object Store
+# Volumes
