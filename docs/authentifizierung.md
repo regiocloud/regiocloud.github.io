@@ -21,6 +21,9 @@ steht das Projekt `sample-project` zur Verfügung.
 ## API & CLI für Infrastructure as a Service
 
 * https://docs.openstack.org/python-openstackclient/latest/configuration/index.html
+
+### Benutzername & Passwort
+
 * https://a.regiocloud.tech/project/api_access/clouds.yaml/
 
 ```yaml title="clouds.yaml"
@@ -43,3 +46,22 @@ clouds:
     auth:
       password: "password"
 ```
+
+### Application Credentials
+
+* https://docs.openstack.org/keystone/latest/user/application_credentials.html
+
+<img
+  src={require('./images/authentifizierung/horizon-application-credentials-1.png').default}
+  width="50%"
+/>
+
+<img
+  src={require('./images/authentifizierung/horizon-application-credentials-2.png').default}
+  width="50%"
+/>
+
+<img
+  src={require('./images/authentifizierung/horizon-application-credentials-3.png').default}
+  width="50%"
+/>
