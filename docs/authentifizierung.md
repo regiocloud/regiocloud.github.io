@@ -15,9 +15,9 @@ clouds:
   openstack:
     auth:
       auth_url: https://keystone.services.a.regiocloud.tech
-      username: "alice"
-      project_id:be3e1ab512d44b0f8c874fceb98e857a
       project_name: "sample-project"
+      project_domain_name: "sample"
+      username: "alice"
       user_domain_name: "sample"
     region_name: "RegionA"
     interface: "public"
