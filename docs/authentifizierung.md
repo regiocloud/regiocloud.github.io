@@ -65,3 +65,16 @@ clouds:
   src={require('./images/authentifizierung/horizon-application-credentials-3.png').default}
   width="50%"
 />
+
+```yaml title="clouds.yaml"
+clouds:
+  openstack:
+    auth:
+      auth_url: https://keystone.services.a.regiocloud.tech
+      application_credential_id: "355300a7cdd5459b80310308099b9926"
+      application_credential_secret: "Bn_RwoUbP8e5IMLr-gRvGImQCBa6HOtBkr5tgDmEJIcqhd3QB|1uE_ORsDVYBQMrAShPFma3DQQmQ7TOU4Fbwg"
+    region_name: "RegionA"
+    interface: "public"
+    identity_api_version: 3
+    auth_type: "v3applicationcredential"
+```
