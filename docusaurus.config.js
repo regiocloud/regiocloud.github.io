@@ -108,10 +108,20 @@ const config = {
                 label: 'Datenschutz',
                 href: '/datenschutz',
               },
+            ],
+          },
+          {
+            title: 'Status',
+            items: [
               {
                 label: 'API Monitoring - Region A',
                 href: 'https://apimon.services.regio.digital/public-dashboards/17cf094a47404398a5b8e35a4a3968d4?orgId=1&refresh=5m',
               },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
               {
                 label: 'GitHub',
                 href: 'https://github.com/regiocloud',
