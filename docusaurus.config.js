@@ -84,6 +84,11 @@ const config = {
           { to: "/tutorials", label: "Tutorials", position: "left" },
           { to: "/blog", label: "Blog", position: "left" },
           {
+            href: 'https://osism.github.io',
+            label: 'Open Cloud Infrastructure',
+            position: 'right',
+          },
+          {
             href: 'https://scs.community',
             label: 'Sovereign Cloud Stack',
             position: 'right',

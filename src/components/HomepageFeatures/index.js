@@ -37,7 +37,7 @@ Unser Object Storage bietet Ihnen die ultimative Lösung für die ständig wachs
 function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
+      <div className="text--left">
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--justify padding-horiz--md">
