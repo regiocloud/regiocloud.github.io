@@ -98,8 +98,12 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Community',
+            title: 'Links',
             items: [
+              {
+                label: 'Impressum',
+                href: '/impressum',
+              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/regiocloud',
