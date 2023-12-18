@@ -105,6 +105,10 @@ const config = {
                 href: '/impressum',
               },
               {
+                label: 'Datenschutz',
+                href: '/datenschutz',
+              },
+              {
                 label: 'GitHub',
                 href: 'https://github.com/regiocloud',
               },
