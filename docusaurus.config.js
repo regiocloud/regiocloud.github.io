@@ -111,8 +111,12 @@ const config = {
             ],
           },
           {
-            title: 'Status',
+            title: 'Support',
             items: [
+              {
+                label: 'Status',
+                href: 'https://status.regio.digital',
+              },
               {
                 label: 'Health Monitoring - Region A',
                 href: 'https://apimon.services.regio.digital/public-dashboards/17cf094a47404398a5b8e35a4a3968d4?orgId=1&refresh=5m',
