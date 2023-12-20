@@ -8,7 +8,7 @@ const darkCodeTheme = themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'REGIO – Die regionale Cloud aus Baden-Württemberg',
-  tagline: '',
+  tagline: 'Ein Marktplatz. Ein Ansprechpartner. Alle Möglichkeiten.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
