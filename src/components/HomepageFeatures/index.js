@@ -41,7 +41,7 @@ function Feature({image, title, description}) {
       <div className="text--left">
         <img className={styles.featureImage} src={useBaseUrl(image)} />
       </div>
-      <div className="text--justify padding-horiz--md">
+      <div className="text--justify">
         <h2>{title}</h2>
         <p>{description}</p>
       </div>
