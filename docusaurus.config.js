@@ -130,6 +130,14 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/regiocloud',
               },
+              {
+                label: 'Open Cloud Infrastructure',
+                href: 'https://osism.github.io',
+              },
+              {
+                label: 'Sovereign Cloud Stack',
+                href: 'https://scs.community/de/',
+              },
             ],
           },
         ],
