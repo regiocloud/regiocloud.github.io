@@ -75,37 +75,41 @@ Diverse Dienste bzw. Applikationen können mit Hilfe von [kubectl](https://kuber
 #### Kubectl
 Ein essenzieller Teil eines Kubernetes-Clusters ist die Erreichbarkeit von außen. Um dies zu erreichen muss ein `Service` sowie `Ingress` erstellt werden.
 
-`nextcloud-svc.yaml`
+```bash
+$ kubectl create namespace nginx
+```
+
+`nginx-svc.yaml`
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: nextcloud-service
-  namespace: nextcloud
+  name: nginx-service
+  namespace: nginx
 spec:
   selector:
-    app: nextcloud
+    app: nginx
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
 ```
 
 ```bash
-$ kubectl apply -f nextcloud-svc.yaml
+$ kubectl apply -f nginx-svc.yaml
 ```
+Die `External-IP` des Loadbalancers kann über `kubectl get svc nginx-service -n nginx` in Erfahrung gebracht werden.
 
 Der Ingress dient dabei als Vermittler zwischen dem eingehenden Traffic und dem Service
 
-`nextcloud-ingress.yaml`
+`nginx-ingress.yaml`
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nextcloud-ingress
+  name: nginx-ingress
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 4G
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
@@ -115,15 +119,49 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nextcloud
+            name: nginx
             port:
-              number: 8080
+              number: 80
 ```
 
 ```bash
-$ kubectl apply -f nextcloud-ingress.yaml
+$ kubectl apply -f nginx-ingress.yaml
 ```
 
+Um nginx selbst auszurollen, muss ein Deployment erstellt werden:
+
+`nginx-deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+
+```bash
+$ kubectl apply -f nginx-deployment.yaml --namespace nginx
+```
+
+Um alles wieder abzureißen, kann folgender Befehl benutzt werden:
+
+```bash
+$ kubectl delete all --all --namespace nginx
+```
 #### Helm
 Einfacher geht das ganze noch, wenn Helm benutzt wird. Dabei wird automatisch ein Service für den Dienst erstellt. Ausserdem kann, in den meisten Fällen, innerhalb der `Values` ein `Ingress` konfiguriert werden. Zuvor muss jedoch, ebenfalls per Helm, ein Ingress mit dem `type: "Loadbalancer"` erstellt werden, damit eine externe IP für den nachfolgenden Dienst existiert.
 
@@ -144,50 +182,27 @@ controller:
 
 ```bash
 $ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+$ helm repo update
 $ helm upgrade -i ingress-nginx -f ingress-values.yaml --create-namespace -n ingress-nginx ingress-nginx/ingress-nginx
 ```
 
-`nextcloud-values.yaml`
+`nginx-values.yaml`
 ```yaml
-ingress:
+cloneStaticSiteFromGit:
   enabled: true
-  className: nginx
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: 4G
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  tls:
-    - secretName: nextcloud-tls
-      hosts:
-        - nextcloud.example.org
-  path: /
-  pathType: Prefix
-nextcloud:
-  host: nextcloud.example.org
-  username: admin
-  password: pa$$w0rd
-internalDatabase:
-  enabled: false
-externalDatabase:
-  enabled: true
-  host: nextcloud-mariadb
-  password: pa$$w0rd
-mariadb:
-  enabled: true
-  auth:
-    database: nextcloud
-    username: nextcloud
-    password: pa$$w0rd
-redis:
-  enabled: true
-  architecture: standalone
-  auth:
-    enabled: true
-    password: pa$$w0rd
-cronjob:
-  enabled: true
+  repository: "https://github.com/user/website"
+  branch: "main"
+  interval: 3600
 ```
 
 ```bash
-$ helm repo add nextcloud https://nextcloud.github.io/helm/
-$ helm upgrade -i nextcloud -f nextcloud-values.yaml --create-namespace -n nextcloud nextcloud/nextcloud
+$ helm upgrade -i nginx -f nginx-values.yaml --create-namespace -n nginx oci://registry-1.docker.io/bitnamicharts/nginx
+```
+
+Die Values dienen nur als Beispiel, was damit möglich ist. Hier wird bspw. eine statische Website ausgeliefert mit dem nginx.
+
+Zum Abreißen des Charts, kann folgender Befehl benutzt werden:
+
+```bash
+$ helm uninstall nginx -n nginx
 ```
