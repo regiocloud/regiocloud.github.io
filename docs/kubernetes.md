@@ -25,16 +25,18 @@ sidebar_position: 200
 
 Das Credential Plugin [gardenlogin](https://github.com/gardener/gardenlogin#installation)
 sowie die [CLI für Gardener](https://github.com/gardener/gardenctl-v2/#install-using-package-managers)
-muss vorab installiert werden.
+und [kubelogin](https://github.com/int128/kubelogin) muss vorab installiert werden.
 
 ```bash
 # Homebrew (macOS and Linux)
 brew install gardener/tap/gardenctl-v2
 brew install gardener/tap/gardenlogin
+brew install int128/kubelogin/kubelogin
 
 # Chocolatey (Windows)
 choco install gardenctl-v2
 choco install gardenlogin
+choco install kubelogin
 ```
 
 Eine personalisierte Kubeconfig für ein Projekt `PROJECT` kann von
