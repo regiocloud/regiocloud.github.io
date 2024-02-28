@@ -82,14 +82,15 @@ shoot--PROJECT--CLUSTER-worker-iaz3a-z1-6c9cd-jx84f   Ready    <none>   87m   v1
 Diverse Dienste bzw. Applikationen können mit Hilfe von [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) oder beispielsweise [helm](https://helm.sh/docs/helm/helm_install/) installiert werden.
 
 #### Kubectl
+
 Ein essenzieller Teil eines Kubernetes-Clusters ist die Erreichbarkeit von außen. Um dies zu erreichen muss ein `Service` sowie `Ingress` erstellt werden.
 
 ```bash
 $ kubectl create namespace nginx
+namespace/nginx created
 ```
 
-`nginx-svc.yaml`
-```yaml
+```yaml title="nginx-svc.yaml"
 apiVersion: v1
 kind: Service
 metadata:
@@ -107,12 +108,12 @@ spec:
 ```bash
 $ kubectl apply -f nginx-svc.yaml
 ```
+
 Die `External-IP` des Loadbalancers kann über `kubectl get svc nginx-service -n nginx` in Erfahrung gebracht werden.
 
 Der Ingress dient dabei als Vermittler zwischen dem eingehenden Traffic und dem Service
 
-`nginx-ingress.yaml`
-```yaml
+```yaml title="nginx-ingress.yaml"
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -139,8 +140,7 @@ $ kubectl apply -f nginx-ingress.yaml
 
 Um nginx selbst auszurollen, muss ein Deployment erstellt werden:
 
-`nginx-deployment.yaml`
-```yaml
+```yaml title="nginx-deployment.yaml"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -171,11 +171,15 @@ Um alles wieder abzureißen, kann folgender Befehl benutzt werden:
 ```bash
 $ kubectl delete all --all --namespace nginx
 ```
-#### Helm
-Einfacher geht das ganze noch, wenn Helm benutzt wird. Dabei wird automatisch ein Service für den Dienst erstellt. Ausserdem kann, in den meisten Fällen, innerhalb der `Values` ein `Ingress` konfiguriert werden. Zuvor muss jedoch, ebenfalls per Helm, ein Ingress mit dem `type: "Loadbalancer"` erstellt werden, damit eine externe IP für den nachfolgenden Dienst existiert.
 
-`ingress-values.yaml`
-```yaml
+#### Helm
+
+Einfacher geht das ganze noch, wenn Helm benutzt wird. Dabei wird automatisch ein Service für den Dienst erstellt.
+Ausserdem kann, in den meisten Fällen, innerhalb der `Values` ein `Ingress` konfiguriert werden. Zuvor muss jedoch,
+ebenfalls per Helm, ein Ingress mit dem Type `Loadbalancer` erstellt werden, damit eine öffentliche IP Adresse für den
+nachfolgenden Dienst existiert.
+
+```yaml title="ingress-values.yaml"
 controller:
   allowSnippetAnnotations: true
   podLabels:
@@ -195,11 +199,10 @@ $ helm repo update
 $ helm upgrade -i ingress-nginx -f ingress-values.yaml --create-namespace -n ingress-nginx ingress-nginx/ingress-nginx
 ```
 
-`nginx-values.yaml`
-```yaml
+```yaml title="nginx-values.yaml"
 cloneStaticSiteFromGit:
   enabled: true
-  repository: "https://github.com/user/website"
+  repository: "https://github.com/regiocloud/sample-website"
   branch: "main"
   interval: 3600
 ```
@@ -209,6 +212,20 @@ $ helm upgrade -i nginx -f nginx-values.yaml --create-namespace -n nginx oci://r
 ```
 
 Die Values dienen nur als Beispiel, was damit möglich ist. Hier wird bspw. eine statische Website ausgeliefert mit dem nginx.
+
+Die Erstellung des Loadbalancers nimmt einige Zeit in Anspruch. Mit dem nachfolgendem Kommando kann darauf gewartet werden.
+Sobald der Loadbalancer verfügbar ist wird in der Spalte `EXTERNAL-IP` die öffentlich erreichbare IP Adresse des Loadbalancers
+hinterlegt. Das Kommand kann dann mit `STRG+C` beendet werden.
+
+```bash
+$ kubectl get svc --namespace nginx -w nginx
+NAME    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+nginx   LoadBalancer   100.90.239.115   <pending>     80:31627/TCP   58s
+nginx   LoadBalancer   100.90.239.115   <pending>     80:31627/TCP   2m12s
+nginx   LoadBalancer   100.90.239.115   81.163.193.251   80:31627/TCP   2m12s
+```
+
+Die Beispiel Website ist dann über die IP Adresse in der Spalte `EXTERNAL-IP` über einen beliebigen Browser aufrufbar.
 
 Zum Abreißen des Charts, kann folgender Befehl benutzt werden:
 
