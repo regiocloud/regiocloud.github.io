@@ -211,7 +211,10 @@ cloneStaticSiteFromGit:
 $ helm upgrade -i nginx -f nginx-values.yaml --create-namespace -n nginx oci://registry-1.docker.io/bitnamicharts/nginx
 ```
 
-Die Values dienen nur als Beispiel, was damit möglich ist. Hier wird bspw. eine statische Website ausgeliefert mit dem nginx.
+Die Values in `nginx-values.yaml` dienen nur als Beispiel. Hier wird eine statische Website ausgeliefert. Alle möglichen
+Values für das Helm Chart finden sich in der [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/nginx/values.yaml)
+des Helm Charts selbst.
+
 
 Die Erstellung des Loadbalancers nimmt einige Zeit in Anspruch. Mit dem nachfolgendem Kommando kann darauf gewartet werden.
 Sobald der Loadbalancer verfügbar ist wird in der Spalte `EXTERNAL-IP` die öffentlich erreichbare IP Adresse des Loadbalancers
@@ -231,4 +234,12 @@ Zum Abreißen des Charts, kann folgender Befehl benutzt werden:
 
 ```bash
 $ helm uninstall nginx -n nginx
+release "nginx" uninstalled
+```
+
+Der Loadbalancer kann wie folgt entfernt werden:
+
+```bash
+$ helm uninstall ingress-nginx -n ingress-nginx
+release "ingress-nginx" uninstalled
 ```
