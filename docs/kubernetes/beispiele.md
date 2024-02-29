@@ -125,7 +125,7 @@ $ helm upgrade -i ingress-nginx -f ingress-values.yaml --create-namespace -n ing
 ```yaml title="nginx-values.yaml"
 cloneStaticSiteFromGit:
   enabled: true
-  repository: "https://github.com/regiocloud/sample-website"
+  repository: "https://github.com/regiocloud/example-website"
   branch: "main"
   interval: 3600
 ```
@@ -165,4 +165,29 @@ Der Loadbalancer kann wie folgt entfernt werden:
 ```bash
 $ helm uninstall ingress-nginx -n ingress-nginx
 release "ingress-nginx" uninstalled
+```
+
+## Kubeapps
+
+```bash
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ kubectl create namespace kubeapps
+$ helm install kubeapps --namespace kubeapps bitnami/kubeapps
+```
+
+```
+$ kubectl create --namespace default serviceaccount kubeapps-operator
+$ kubectl create clusterrolebinding kubeapps-operator --clusterrole=cluster-admin --serviceaccount=default:kubeapps-operator
+$ cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kubeapps-operator-token
+  namespace: default
+  annotations:
+    kubernetes.io/service-account.name: kubeapps-operator
+type: kubernetes.io/service-account-token
+EOF
+$ kubectl get --namespace default secret kubeapps-operator-token -o go-template='{{.data.token | base64decode}}'
+$ kubectl port-forward -n kubeapps svc/kubeapps 8080:80
 ```

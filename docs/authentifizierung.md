@@ -5,9 +5,9 @@ sidebar_position: 35
 
 # Authentifizierung
 
-In der Dokumentation wird der Nutzer `alice` aus der Domain `sample` mit dem
+In der Dokumentation wird der Nutzer `alice` aus der Domain `example` mit dem
 Passwort `password` in der Region A für Beispiele genutzt. Dem Nutzer `alice`
-steht das Projekt `sample-project` zur Verfügung.
+steht das Projekt `example-project` zur Verfügung.
 
 ## Dashboard für Infrastructure as a Service
 
@@ -31,10 +31,10 @@ clouds:
   openstack:
     auth:
       auth_url: https://keystone.services.a.regiocloud.tech
-      project_name: "sample-project"
-      project_domain_name: "sample"
+      project_name: "example-project"
+      project_domain_name: "example"
       username: "alice"
-      user_domain_name: "sample"
+      user_domain_name: "example"
     region_name: "RegionA"
     interface: "public"
     identity_api_version: 3
