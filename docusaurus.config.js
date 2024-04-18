@@ -83,8 +83,8 @@ const config = {
           { to: "/tutorials", label: "Tutorials", position: "left" },
           { to: "/blog", label: "Blog", position: "left" },
           {
-            href: 'https://osism.github.io',
-            label: 'Open Cloud Infrastructure',
+            href: 'https://osism.tech',
+            label: 'Sovereign Cloud Infrastructure',
             position: 'right',
           },
           {
@@ -131,8 +131,8 @@ const config = {
                 href: 'https://github.com/regiocloud',
               },
               {
-                label: 'Open Cloud Infrastructure',
-                href: 'https://osism.github.io',
+                label: 'Sovereign Cloud Infrastructure',
+                href: 'https://osism.tech',
               },
               {
                 label: 'Sovereign Cloud Stack',
