@@ -5,12 +5,12 @@ title: Impressum
 ## Angaben gemäß § 5 TMG
 
 OSISM GmbH<br/>
-Teckstraße 62<br/>
-70190 Stuttgart<br/>
+Talweg 8<br/>
+75417 Mühlacker<br/>
 Deutschland
 
-Handelsregister: HRB 756139<br/>
-Registergericht: Amtsgericht Stuttgart
+Handelsregister: HRB 750852<br/>
+Registergericht: Amtsgericht Mannheim
 
 Vertreten durch die Geschäftsführung:<br/>
 Christian Berendt
@@ -40,8 +40,8 @@ Deutschland
 ## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
 
 Christian Berendt<br/>
-Teckstraße 62<br/>
-70190 Stuttgart<br/>
+Talweg 8<br/>
+75417 Mühlacker<br/>
 Deutschland
 
 ## Streitschlichtung
