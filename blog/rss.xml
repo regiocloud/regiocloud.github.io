@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>REGIO – Die regionale Cloud aus Baden-Württemberg Blog</title>
+        <title>REGIO – Die Cloud für Industrie 4.0 Blog</title>
         <link>https://regiocloud.github.io/blog</link>
-        <description>REGIO – Die regionale Cloud aus Baden-Württemberg Blog</description>
+        <description>REGIO – Die Cloud für Industrie 4.0 Blog</description>
         <lastBuildDate>Tue, 05 Dec 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>

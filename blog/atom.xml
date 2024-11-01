@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://regiocloud.github.io/blog</id>
-    <title>REGIO – Die regionale Cloud aus Baden-Württemberg Blog</title>
+    <title>REGIO – Die Cloud für Industrie 4.0 Blog</title>
     <updated>2023-12-05T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://regiocloud.github.io/blog"/>
-    <subtitle>REGIO – Die regionale Cloud aus Baden-Württemberg Blog</subtitle>
+    <subtitle>REGIO – Die Cloud für Industrie 4.0 Blog</subtitle>
     <icon>https://regiocloud.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Erster Blog Post]]></title>
