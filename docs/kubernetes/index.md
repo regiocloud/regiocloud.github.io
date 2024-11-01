@@ -40,8 +40,10 @@ choco install kubelogin
 ```
 
 Eine personalisierte Kubeconfig für ein Projekt `PROJECT` kann von
-https://dashboard.okeanos.tech/account?namespace=garden-PROJECT herunterladen und in einer lokalen Datei
-abgelegt werden. Zum Beispiel in `~/.kube/garden-okeanos`.
+`https://dashboard.okeanos.tech/account?namespace=garden-PROJECT` herunterladen und in einer lokalen Datei
+in `~/.kube` abgelegt werden. Zum Beispiel in `~/.kube/garden-okeanos`.
+
+Anschliessend wird diese Konfiguration mit `gardenctl` bekannt gemacht.
 
 ```
 $ gardenctl config set-garden okeanos --kubeconfig "~/.kube/garden-okeanos"
@@ -61,13 +63,18 @@ Die Kubeconfig für ein Kubernetes Cluster `CLUSTER` in einem Projekt `PROJECT` 
 einer lokalen Datei ablegen. Zum Beispiel in `~/.kube/config-pfee6i4v2j` wenn der Name des Clusters
 `pfee6i4v2j` ist.
 
+:::info
+
 Wenn mehrere Projekte genutzt werden und dadurch bedingt mehrere Einträge in `~/.garden/gardenctl-v2.yaml`
 vorhanden sind ist es wichtig in dieser Kubeconfig eine Änderung vorzunehmen. Der Eintrag
 `gardenClusterIdentity` ist per Default auf `okeanos` gesetzt und muss entsprechend angepasst werden. Wenn z.B.
 eine weiterer Eintrag `demo` in `~/.garden/gardenctl-v2.yaml` vorhanden ist und genutzt werden soll dann
 wird `gardenClusterIdentity` entsprechend auf `gardenClusterIdentity: demo` geändert.
 
-Anschliessend kann z.B. [kubectl](https://kubernetes.io/docs/reference/kubectl/) wie gewohnt verwendet werden.
+:::
+
+Anschliessend kann z.B. [kubectl](https://kubernetes.io/docs/reference/kubectl/) wie gewohnt verwendet werden
+nachdem die Kubeconfig wie gewohnt per `KUBECONFIG` Umgebungsvariable bekannt gemacht wurde.
 
 ```
 $ export KUBECONFIG=~/.kube/config-pfee6i4v2j
