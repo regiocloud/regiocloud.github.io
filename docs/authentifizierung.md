@@ -78,3 +78,40 @@ clouds:
     identity_api_version: 3
     auth_type: "v3applicationcredential"
 ```
+
+## Dashboard für OKEANOS.tech
+
+* https://dashboard.okeanos.tech/login
+
+Um sich mit seinem Account an OKEANOS.tech anzumelden, rufen Sie `https://dashboard.okeanos.tech/login` auf und klicken Sie auf `Login`.
+
+<img
+  src={require('./images/authentifizierung/gardener-login.png').default}
+  width="50%"
+/>
+
+Sie werden automatisch auf `https://auth.okeanos.tech` weitergeleitet. Geben Sie dort bitte Ihren Login Namen (meistens Ihre Mailadresse) ein. Geben Sie im zweiten Schritt dann Ihr Passwort ein.
+
+<img
+  src={require('./images/authentifizierung/zitadel-login.png').default}
+  width="50%"
+/>
+
+<img
+  src={require('./images/authentifizierung/zitadel-password.png').default}
+  width="50%"
+/>
+
+Als letztes werden Sie nach Ihrem hinterlegten zweiten Faktor gefragt, sollten Sie diesen eingerichtet haben. Geben Sie den Code ein und beenden Sie den Anmeldeprozess.
+
+<img
+  src={require('./images/authentifizierung/zitadel-2fa.png').default}
+  width="50%"
+/>
+
+Wenn Sie das Secret korrekt eingegeben haben, landen Sie im Dashboard von OKEANOS.tech und können in Ihren Projekten Shoots (Cluster) erstellen.
+
+<img
+  src={require('./images/authentifizierung/gardener-dashboard.png').default}
+  width="50%"
+/>
