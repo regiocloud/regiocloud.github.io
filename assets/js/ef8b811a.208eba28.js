@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkosism=self.webpackChunkosism||[]).push([[8947],{6600:e=>{e.exports=JSON.parse('{"authors":[{"name":"Christian Berendt","title":"Cloud Chef","url":"https://github.com/berendt","imageURL":"https://github.com/berendt.png","key":"berendt","page":null,"count":1}]}')}}]);
