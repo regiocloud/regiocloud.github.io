@@ -87,11 +87,6 @@ const config = {
             label: 'Sovereign Cloud Infrastructure',
             position: 'right',
           },
-          {
-            href: 'https://scs.community',
-            label: 'Sovereign Cloud Stack',
-            position: 'right',
-          },
         ],
       },
       footer: {
